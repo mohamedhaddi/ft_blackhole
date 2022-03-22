@@ -1,10 +1,10 @@
 {
     "manifest_version": 2,
-    "name": "ft_logtime",
-    "version": "2.0",
-    "description": "Calculates your logtime at https://intra.42.fr.",
+    "name": "ft_blackhole",
+    "version": "1.0",
+    "description": "Show how many days you have left before you get absorbed by the Blackhole.",
     "icons": {
-        "48": "icons/42-logo.png"
+        "48": "icons/blackhole.png"
     },
     "content_scripts": [
         {
@@ -13,7 +13,9 @@
                 "https://profile.intra.42.fr/users/*",
                 "https://profile.intra.42.fr/users/*/"
             ],
-            "js": ["ft_logtime.js"]
+            "js": [
+                "ft_blackhole.js"
+            ]
         }
     ]
 }
