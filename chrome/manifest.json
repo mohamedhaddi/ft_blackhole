@@ -1,5 +1,5 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "ft_blackhole",
     "version": "0.1",
     "description": "Show how many days you have left before you get absorbed by the Blackhole.",
