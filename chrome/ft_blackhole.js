@@ -33,14 +33,12 @@ let status = (() => {
         return {cat: "😸", color: "#5CB85C"};
 })();
 
+let daysLeftDiv = document.createElement("div");
+daysLeftDiv.innerText = daysLeft + ' ' + status["cat"];
+daysLeftDiv.style.color = status["color"];
+daysLeftDiv.style.fontSize = "0.7em";
+daysLeftDiv.style.fontWeight = "400";
+
 blackholeDiv
     .children[1]
-    .appendChild((() => {
-        let daysLeftDiv = document.createElement("div");
-        daysLeftDiv.style.fontSize = "0.7em";
-        daysLeftDiv.style.fontWeight = "400";
-        daysLeftDiv.innerText = daysLeft + ' ' + status["cat"];
-        daysLeftDiv.style.color = status["color"];
-        return daysLeftDiv;
-    })()
-    );
+    .appendChild(daysLeftDiv);
