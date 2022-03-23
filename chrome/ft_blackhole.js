@@ -1,8 +1,21 @@
-setTimeout(function () {
-    const blackholeDiv = document
-        .getElementById("bh")
-        .getElementsByClassName("emote-bh")[0];
+const blackholeDiv = document
+    .getElementById("bh")
+    .getElementsByClassName("emote-bh")[0];
 
+const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/
+
+const observer = new MutationObserver(function (mutationList) {
+    for (const mutation of mutationList) {
+        if (!mutation.addedNodes) return;
+        for (var i = 0; i < mutation.addedNodes.length; i++) {
+            if (dateRegex.test(mutation.addedNodes[i].data)) {
+                main();
+            }
+        }
+    }
+});
+
+function main() {
     const daysLeft = blackholeDiv.getAttribute("data-original-title");
     const daysNum = daysLeft.split(" ")[0];
 
@@ -25,7 +38,18 @@ setTimeout(function () {
     blackholeDiv
         .children[1]
         .appendChild(daysLeftDiv);
-}, 300);
+}
+
+try {
+    observer.observe(blackholeDiv, {
+        childList: true,
+        subtree: true,
+        attributes: false,
+        characterData: false,
+    });
+} catch (error) {
+    console.log(error);
+}
 
 /*
  *
@@ -45,25 +69,3 @@ setTimeout(function () {
  * } days left`;
  *
 */
-
-/*
- *
- * Callback function to execute when mutations are observed:
- *
- * const callback = function (mutationsList, observer) {
- *     for (const mutation of mutationsList) {
- *         if (mutation.type === 'childList') {
- *             console.log('A child node has been added or removed: ', mutation);
- *         }
- *         else if (mutation.type === 'attributes') {
- *             console.log('The ' + mutation.attributeName + ' attribute was modified: ', mutation);
- *         }
- *     }
- * };
- *
- * const config = {attributes: true, childList: true, subtree: true};
- * const observer = new MutationObserver(callback);
- * observer.observe(blackholeDiv, config);
- *
- */
-
