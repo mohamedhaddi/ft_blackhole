@@ -10,7 +10,7 @@ A simple extension that shows how many days a user has left until the date of th
 If you'd like to use it:
 
 ### For Chrome
-It is available in the [Chrome Web Store]().
+It is available in the [Chrome Web Store](https://chrome.google.com/webstore/detail/ftblackhole/pofhnleglcpmmkkaohhadcmombagfeie/).
 
 ### For Firefox:
 Just download the [`firefox/ft_blackhole-0.1-an+fx.xpi`](https://github.com/mohamedhaddi/ft_blackhole/blob/master/firefox/ft_blackhole-0.1-an+fx.xpi) file from this repo and upload it to **Menu > Add-ons > Settings cog > Install Add-on From File** in your Firefox browser.
