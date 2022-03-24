@@ -1,8 +1,8 @@
 const blackholeDiv = document
     .getElementById("bh")
     .getElementsByClassName("emote-bh")[0];
-
 const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/
+const blackholeDate = document.getElementById("bh-date").firstChild;
 
 const observer = new MutationObserver(function (mutationList) {
     for (const mutation of mutationList) {
@@ -14,6 +14,21 @@ const observer = new MutationObserver(function (mutationList) {
         }
     }
 });
+
+if (blackholeDate && dateRegex.test(blackholeDate.data))
+    main();
+else {
+    try {
+        observer.observe(blackholeDiv, {
+            childList: true,
+            subtree: true,
+            attributes: false,
+            characterData: false,
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 function main() {
     const daysLeft = blackholeDiv.getAttribute("data-original-title");
@@ -38,17 +53,6 @@ function main() {
     blackholeDiv
         .children[1]
         .appendChild(daysLeftDiv);
-}
-
-try {
-    observer.observe(blackholeDiv, {
-        childList: true,
-        subtree: true,
-        attributes: false,
-        characterData: false,
-    });
-} catch (error) {
-    console.log(error);
 }
 
 /*
