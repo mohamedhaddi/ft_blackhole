@@ -1,4 +1,8 @@
-const blackholeDataAPI = "https://profile.intra.42.fr/users/me/goals?cursus=42cursus";
+const username = document
+    .getElementsByClassName("login")[0]
+    .getAttribute("data-login");
+
+const blackholeDataAPI = "https://profile.intra.42.fr/users/" + username + "/goals?cursus=42cursus";
 
 fetch(blackholeDataAPI)
     .then((res) => res.json())
