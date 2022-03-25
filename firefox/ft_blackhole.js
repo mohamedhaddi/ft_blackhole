@@ -1,69 +1,41 @@
-setTimeout(function () {
-    const blackholeDiv = document
-        .getElementById("bh")
-        .getElementsByClassName("emote-bh")[0];
+const blackholeDataAPI = "https://profile.intra.42.fr/users/me/goals?cursus=42cursus";
 
-    const daysLeft = blackholeDiv.getAttribute("data-original-title");
-    const daysNum = daysLeft.split(" ")[0];
+fetch(blackholeDataAPI)
+    .then((res) => res.json())
+    .then((out) => {
+        if (Object.getOwnPropertyNames(out).length !== 0) {
 
-    const status = (() => {
-        if (daysNum <= 14)
-            return {cat: "😿", color: "#D8636F"};
-        else if (daysNum <= 42)
-            return {cat: "🙀", color: "#F0AD4E"};
-        else
-            return {cat: "😸", color: "#5CB85C"};
-    })();
+            const daysLeft = out['singularity'];
 
-    const daysLeftDiv = document.createElement("div");
-    daysLeftDiv.innerText = daysLeft + ' ' + status["cat"];
-    daysLeftDiv.style.color = status["color"];
-    daysLeftDiv.style.fontSize = "0.7em";
-    daysLeftDiv.style.fontWeight = "400";
-    daysLeftDiv.style.animation = "0.42s ease 0s 1 normal none running fadeIn";
+            const statuses = {
+                'sad': {cat: "😿", color: "#D8636F"},
+                'scared': {cat: "🙀", color: "#F0AD4E"},
+                'happy': {cat: "😸", color: "#5CB85C"}
+            }
 
-    blackholeDiv
-        .children[1]
-        .appendChild(daysLeftDiv);
-}, 300);
+            const emotion = (() => {
+                if (daysLeft <= 15) {
+                    return 'sad';
+                } else if (daysLeft <= 42) {
+                    return 'scared';
+                } else {
+                    return 'happy';
+                }
+            })();
 
-/*
- *
- * In case `data-original-title`'s value was removed or changed, use this code calculate it:
- *
- * let blackholeDate = (() => {
- *     let date = blackholeDiv.getAttribute("data-original-title");
- *     let [day, month, year] = [...date.split("/")];
- *     return `${month}/${day}/${year}`;
- * })();
- *
- * let daysLeft = `${
- *     Math.floor(
- *          (new Date(blackholeDate) - new Date())
- *          / (1000 * 60 * 60 * 24)
- *     )
- * } days left`;
- *
-*/
+            const daysLeftDiv = document.createElement("div");
 
-/*
- *
- * Callback function to execute when mutations are observed:
- *
- * const callback = function (mutationsList, observer) {
- *     for (const mutation of mutationsList) {
- *         if (mutation.type === 'childList') {
- *             console.log('A child node has been added or removed: ', mutation);
- *         }
- *         else if (mutation.type === 'attributes') {
- *             console.log('The ' + mutation.attributeName + ' attribute was modified: ', mutation);
- *         }
- *     }
- * };
- *
- * const config = {attributes: true, childList: true, subtree: true};
- * const observer = new MutationObserver(callback);
- * observer.observe(blackholeDiv, config);
- *
- */
+            daysLeftDiv.innerText = daysLeft + ' days left ' + statuses[emotion]["cat"];
+            daysLeftDiv.style.color = statuses[emotion]["color"];
+            daysLeftDiv.style.fontSize = "0.7em";
+            daysLeftDiv.style.fontWeight = "400";
+            daysLeftDiv.style.animation = "0.42s ease 0s 1 normal none running fadeIn";
+
+            document.getElementById("bh-date").appendChild(daysLeftDiv);
+
+        }
+    })
+    .catch((err) => {
+        throw err;
+    });
 
