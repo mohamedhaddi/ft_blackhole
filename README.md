@@ -1,3 +1,6 @@
+## ⚠️ Unmaintained
+I am no longer a user of intra.42.fr, therefore I can no longer maintain this extension.
+
 # ft_blackhole
 A simple extension that shows how many days a user has left until the date of the deadline (Blackhole) on [https://intra.42.fr](https://intra.42.fr) and shows it in right under the date in the *Black Hole absorption* section of their profile.
 
