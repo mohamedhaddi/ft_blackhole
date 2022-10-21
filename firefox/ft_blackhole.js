@@ -35,7 +35,7 @@ fetch(blackholeDataAPI)
             daysLeftDiv.style.fontWeight = "400";
             daysLeftDiv.style.animation = "0.42s ease 0s 1 normal none running fadeIn";
 
-            document.getElementById("bh-date").appendChild(daysLeftDiv);
+            document.getElementById("modern-bh-date").appendChild(daysLeftDiv);
 
         }
     })
