@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "ft_blackhole",
-    "version": "0.5",
+    "version": "0.6",
     "description": "Shows how many days you have left before you get absorbed by the Blackhole.",
     "icons": {
         "48": "icons/blackhole.png"
